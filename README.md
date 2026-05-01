@@ -8,9 +8,9 @@ This application allows teams to manage projects, assign tasks, track progress, 
 
 ## Live Demo
 
-Frontend: https://team-task-manager-production-3741.up.railway.app/
+Frontend: https://taskr-task-manager.up.railway.app/
 
-Backend API: https://team-task-manager-etherai.up.railway.app/
+Backend API: https://taskr-task-manager-etherai.up.railway.app/
 
 ---
 
