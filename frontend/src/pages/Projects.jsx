@@ -3,64 +3,68 @@ import API from "../api/axios";
 import { useAuth } from "../context/AuthContext";
 
 function Projects() {
-  const [projects, setProjects] = useState([]);
-  const [form, setForm] = useState({
-    name: "",
-    description: ""
-  });
+    const [projects, setProjects] = useState([]);
+    const [form, setForm] = useState({
+        name: "",
+        description: ""
+    });
 
-  const { user } = useAuth();
+    const { user } = useAuth();
 
-  useEffect(() => {
-    fetchProjects();
-  }, []);
+    useEffect(() => {
+        fetchProjects();
+    }, []);
 
-  const fetchProjects = async () => {
-    const res = await API.get("/projects");
-    setProjects(res.data);
-  };
+    const fetchProjects = async () => {
+        const res = await API.get("/projects");
+        setProjects(res.data);
+    };
 
-  const createProject = async (e) => {
-    e.preventDefault();
-    await API.post("/projects", form);
-    fetchProjects();
-  };
+    const createProject = async (e) => {
+        e.preventDefault();
+        await API.post("/projects", form);
+        fetchProjects();
+    };
 
-  return (
-    <div className="container">
-      <h2>Projects</h2>
+    return (
+        <div className="container">
+            <h2>Projects</h2>
 
-      {user?.role === "admin" && (
-        <form onSubmit={createProject}>
-          <input
-            placeholder="Project Name"
-            onChange={(e) =>
-              setForm({ ...form, name: e.target.value })
-            }
-          />
+            {user?.role === "admin" && (
+                <form onSubmit={createProject}>
+                    <input
+                        placeholder="Project Name"
+                        onChange={(e) =>
+                            setForm({ ...form, name: e.target.value })
+                        }
+                    />
 
-          <input
-            placeholder="Description"
-            onChange={(e) =>
-              setForm({
-                ...form,
-                description: e.target.value
-              })
-            }
-          />
+                    <input
+                        placeholder="Description"
+                        onChange={(e) =>
+                            setForm({
+                                ...form,
+                                description: e.target.value
+                            })
+                        }
+                    />
 
-          <button>Create Project</button>
-        </form>
-      )}
+                    <button>Create Project</button>
+                </form>
+            )}
 
-      {projects.map((project) => (
-        <div className="card" key={project._id}>
-          <h3>{project.name}</h3>
-          <p>{project.description}</p>
+            {projects.map((project) => (
+                <div className="card" key={project._id}>
+                    <h3>{project.name}</h3>
+                    <p>{project.description}</p>
+
+                    <p>
+                        Members: {project.members?.length || 0}
+                    </p>
+                </div>
+            ))}
         </div>
-      ))}
-    </div>
-  );
+    );
 }
 
 export default Projects;

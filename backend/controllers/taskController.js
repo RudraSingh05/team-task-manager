@@ -15,7 +15,13 @@ const createTask = async (req, res) => {
 
 const getTasks = async (req, res) => {
   try {
-    const tasks = await Task.find()
+    let query = {};
+
+    if (req.user.role === "member") {
+      query = { assignedTo: req.user.id };
+    }
+
+    const tasks = await Task.find(query)
       .populate("assignedTo", "name email")
       .populate("project", "name");
 
@@ -41,13 +47,27 @@ const updateTaskStatus = async (req, res) => {
 
 const dashboard = async (req, res) => {
   try {
-    const tasks = await Task.find();
+    let query = {};
+
+    if (req.user.role === "member") {
+      query = { assignedTo: req.user.id };
+    }
+
+    const tasks = await Task.find(query);
 
     const totalTasks = tasks.length;
-    const completed = tasks.filter(t => t.status === "done").length;
-    const pending = tasks.filter(t => t.status !== "done").length;
+    const completed = tasks.filter(
+      (task) => task.status === "done"
+    ).length;
+
+    const pending = tasks.filter(
+      (task) => task.status !== "done"
+    ).length;
+
     const overdue = tasks.filter(
-      t => new Date(t.dueDate) < new Date() && t.status !== "done"
+      (task) =>
+        new Date(task.dueDate) < new Date() &&
+        task.status !== "done"
     ).length;
 
     res.json({
