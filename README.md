@@ -8,15 +8,15 @@ This application allows teams to manage projects, assign tasks, track progress, 
 
 ## Live Demo
 
-Frontend: https://your-frontend-url.up.railway.app
+Frontend: https://team-task-manager-production-3741.up.railway.app/
 
-Backend API: https://your-backend-url.up.railway.app
+Backend API: https://team-task-manager-etherai.up.railway.app/
 
 ---
 
 ## GitHub Repository
 
-https://github.com/your-username/team-task-manager
+https://github.com/RudraSingh05/team-task-manager
 
 ---
 
@@ -112,7 +112,7 @@ team-task-manager
 ### Clone Repository
 
 ```bash
-git clone https://github.com/your-username/team-task-manager.git
+git clone https://github.com/RudraSingh05/team-task-manager.git
 cd team-task-manager
 ```
 
@@ -205,5 +205,6 @@ npm run dev
 
 Rudra Pratap Singh
 
-LinkedIn: https://linkedin.com/in/your-linkedin
-GitHub: https://github.com/your-username
+LinkedIn: https://www.linkedin.com/in/rudra-pratap-singh-cse/
+
+GitHub: https://github.com/RudraSingh05
